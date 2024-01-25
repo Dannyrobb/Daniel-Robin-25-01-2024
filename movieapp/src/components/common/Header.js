@@ -1,21 +1,23 @@
-// Header.js
 import React from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
-function Header() {
+const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Button component={Link} to="/" color="inherit">
+        <Typography variant="h6" style={{ flexGrow: 1 }}>
+          Movie App
+        </Typography>
+        <Button color="inherit" component={Link} to="/">
           Main
         </Button>
-        <Button component={Link} to="/favorites" color="inherit">
+        <Button color="inherit" component={Link} to="/favorites">
           Favorites
         </Button>
       </Toolbar>
     </AppBar>
   );
-}
+};
 
 export default Header;

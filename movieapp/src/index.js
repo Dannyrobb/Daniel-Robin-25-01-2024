@@ -16,3 +16,37 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// src/index.js
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { CssBaseline, ThemeProvider, createTheme } from "@material-ui/core";
+import App from "./App";
+
+import rootReducer from "./store/reducers";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+const theme = createTheme({
+  palette: {
+    type: "light", // use 'dark' for dark mode
+  },
+});
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
+);
