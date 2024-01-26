@@ -1,64 +1,51 @@
-// src/pages/Home.js
-import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addToFavorites, removeFromFavorites } from "../store/actions";
-import { searchMovie, setCurrentMovie } from "../store/actions";
-import { DarkModeContext } from "../utils/helpers";
-import { Button, TextField, Typography, Card, CardContent } from "@material-ui/core";
+// /src/pages/Home.js
+import React, { useState, useEffect, useContext } from "react";
+import { Box, TextField, Button, Typography } from "@mui/material";
+import { AppContext } from "../../App";
+import MovieDetails from "./MovieDetails";
+import { searchMovie, getMovieDetails } from "../../services/api";
 
 const Home = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const { darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(AppContext);
   const [searchTerm, setSearchTerm] = useState("");
-  const currentMovie = useSelector((state) => state.currentMovie);
+  const [currentMovie, setCurrentMovie] = useState({});
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleSearch = () => {
-    dispatch(searchMovie(searchTerm));
-  };
+  useEffect(() => {
+    // Fetch default movie (Matrix) on initial render
+    fetchMovieDetails("Matrix");
+  }, []);
 
-  const handleToggleFavorite = () => {
-    if (currentMovie.isFavorite) {
-      dispatch(removeFromFavorites(currentMovie.id));
-    } else {
-      dispatch(addToFavorites(currentMovie));
+  const fetchMovieDetails = async (movieTitle) => {
+    const movie = await searchMovie(movieTitle);
+    if (movie && movie.length > 0) {
+      const movieDetails = await getMovieDetails(movie[0].imdbID);
+      setCurrentMovie(movieDetails);
+      // Check if the current movie is in favorites
+      // (You may implement this based on your actual favorites storage logic)
+      setIsFavorite(false); // Example: Assume not in favorites initially
     }
   };
 
-  const handleMovieDetails = () => {
-    dispatch(setCurrentMovie(currentMovie));
-    history.push("/movie-details");
+  const handleSearch = async () => {
+    if (searchTerm.trim() !== "") {
+      fetchMovieDetails(searchTerm);
+    }
+  };
+
+  const handleToggleFavorite = () => {
+    // Implement logic to add/remove from favorites
+    // Update isFavorite state accordingly
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <TextField label="Search Movie" variant="outlined" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-      <Button variant="contained" color="primary" onClick={handleSearch} style={{ marginLeft: "10px" }}>
+    <Box p={2} sx={{ backgroundColor: darkMode ? "#333" : "#fff", minHeight: "100vh" }}>
+      <TextField label="Search Movie" variant="outlined" fullWidth value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+      <Button variant="contained" onClick={handleSearch} sx={{ marginTop: 2 }}>
         Search
       </Button>
-
-      {currentMovie && (
-        <Card style={{ marginTop: "20px" }}>
-          <CardContent>
-            <Typography variant="h5">{currentMovie.title}</Typography>
-            <Typography>Director: {currentMovie.director}</Typography>
-            <Typography>Release Year: {currentMovie.releaseYear}</Typography>
-            <Button
-              variant="contained"
-              color={currentMovie.isFavorite ? "secondary" : "primary"}
-              onClick={handleToggleFavorite}
-              style={{ marginTop: "10px", marginRight: "10px" }}
-            >
-              {currentMovie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-            </Button>
-            <Button variant="contained" onClick={handleMovieDetails} style={{ marginTop: "10px" }}>
-              View Details
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+      <MovieDetails movie={currentMovie} isFavorite={isFavorite} onToggleFavorite={handleToggleFavorite} />
+    </Box>
   );
 };
 

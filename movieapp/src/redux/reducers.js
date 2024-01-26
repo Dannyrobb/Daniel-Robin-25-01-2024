@@ -33,7 +33,7 @@ const favoritesReducer = (state = [], action) => {
 
 const searchTermReducer = (state = "", action) => {
   switch (action.type) {
-    case SET_SEARCH_TERM:
+    case "SET_SEARCH_TERM":
       return action.payload;
     default:
       return state;

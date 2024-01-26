@@ -23,3 +23,10 @@ export const setSearchTerm = (searchTerm) => ({
   type: SET_SEARCH_TERM,
   payload: searchTerm,
 });
+
+export const setCurrentMovie = (movie) => {
+  return {
+    type: "SET_CURRENT_MOVIE",
+    payload: movie,
+  };
+};

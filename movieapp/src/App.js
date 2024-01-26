@@ -1,21 +1,43 @@
-// App.js
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import MainScreen from "./MainScreen";
-import FavoritesScreen from "./FavoritesScreen";
-import Header from "./Header";
+// /src/App.js
+import React, { useState, createContext, useContext } from "react";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Home from "./components/pages/Home";
+import Favorites from "./components/pages/Favorites";
+import Header from "./components/common/Header";
+import Footer from "./components/common/Footer";
 
-function App() {
+export const AppContext = createContext();
+
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+    },
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
   return (
-    <Router>
-      <div>
+    <AppContext.Provider value={{ darkMode, toggleDarkMode }}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Header />
-
-        <Route path="/" exact component={MainScreen} />
-        <Route path="/favorites" component={FavoritesScreen} />
-      </div>
-    </Router>
+        <Router>
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </ThemeProvider>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;

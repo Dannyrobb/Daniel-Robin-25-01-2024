@@ -1,22 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Typography, Card, CardContent } from "@material-ui/core";
+import { Box, Typography, Button } from "@mui/material";
 
-const MovieDetails = () => {
-  const currentMovie = useSelector((state) => state.currentMovie);
-
+const MovieDetails = ({ movie, isFavorite, onToggleFavorite }) => {
   return (
-    <div style={{ padding: "20px" }}>
-      <Card>
-        <CardContent>
-          <Typography variant="h4">{currentMovie.title}</Typography>
-          <Typography>Director: {currentMovie.director}</Typography>
-          <Typography>Producer: {currentMovie.producer}</Typography>
-          <Typography>Actors: {currentMovie.actors.join(", ")}</Typography>
-          <Typography>Release Date: {currentMovie.releaseDate}</Typography>
-        </CardContent>
-      </Card>
-    </div>
+    <Box mt={2} p={2} border={1} borderColor="primary.main">
+      {movie && Object.keys(movie).length > 0 ? (
+        <>
+          <Typography variant="h4">{movie.Title}</Typography>
+          <Typography>{`Actors: ${movie.Actors}`}</Typography>
+          <Typography>{`Director: ${movie.Director}`}</Typography>
+          <Typography>{`Producer: ${movie.Producer}`}</Typography>
+          <Typography>{`Release Date: ${movie.Released}`}</Typography>
+          <Button variant="contained" onClick={onToggleFavorite} sx={{ marginTop: 2 }}>
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </Button>
+        </>
+      ) : (
+        <Typography>No movie details available.</Typography>
+      )}
+    </Box>
   );
 };
 
