@@ -1,25 +1,74 @@
+// import logo from "./logo.svg";
+// import "./App.css";
+// import Search from "./components/Search";
+// import MovieDetails from "./components/pages/MovieDetails";
+// import getMovieDetails from "./api/movieDetails";
+// import { useState, useEffect } from "react";
+// import { Stack } from "@mui/material";
+
+// function App() {
+//   const [input, setInput] = useState("");
+//   const [movieDetails, setMovieDetails] = useState("");
+
+//   const movieDetailsHandler = async () => {
+//     const data = await getMovieDetails(input.imdbID);
+//     setMovieDetails(data);
+//   };
+
+//   useEffect(() => {
+//     if (typeof input === "object") {
+//       movieDetailsHandler();
+//     }
+//   }, [input]);
+
+//   return (
+//     <Stack
+//       sx={{
+//         alignItems: "center",
+//         justifyContent: "center",
+//       }}
+//     >
+//       <Search setInput={setInput} input={input} />
+//       <MovieDetails data={input} details={movieDetails} input={input} />
+//     </Stack>
+//   );
+// }
+
+// export default App;
+// src/App.js
+
+// src/App.js
+// src/App.js
 import logo from "./logo.svg";
 import "./App.css";
 import Search from "./components/Search";
 import MovieDetails from "./components/pages/MovieDetails";
-import getMovieDetails from "./api/movieDetails";
 import { useState, useEffect } from "react";
-import { Stack } from "@mui/material";
-
+import { Stack, CircularProgress } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovieDetails, selectMovieDetails, selectLoading } from "./redux/Slices/movieSlice";
+import { setInputValue, selectInputValue } from "./redux/Slices/inputSlice";
+import { Routes, Route } from "react-router-dom";
+import Favorites from "./components/pages/Favorites";
 function App() {
-  const [input, setInput] = useState("");
-  const [movieDetails, setMovieDetails] = useState("");
+  const dispatch = useDispatch();
+  const movieDetails = useSelector(selectMovieDetails);
+  const loading = useSelector(selectLoading);
+  const inputValue = useSelector(selectInputValue);
 
-  const movieDetailsHandler = async () => {
-    const data = await getMovieDetails(input.imdbID);
-    setMovieDetails(data);
-  };
+  // useEffect(() => {
+  //   if (typeof inputValue === "object") {
+  //     console.log(inputValue);
+  //     dispatch(fetchMovieDetails(inputValue.imdbID));
+  //   }
+  // }, [inputValue, dispatch]);
 
   useEffect(() => {
-    if (typeof input === "object") {
-      movieDetailsHandler();
+    if (!inputValue.Error) {
+      console.log(inputValue);
+      dispatch(fetchMovieDetails(inputValue.imdbID));
     }
-  }, [input]);
+  }, [inputValue, dispatch]);
 
   return (
     <Stack
@@ -28,8 +77,8 @@ function App() {
         justifyContent: "center",
       }}
     >
-      <Search setInput={setInput} input={input} />
-      <MovieDetails data={input} details={movieDetails} input={input} />
+      <Search />
+      {loading ? <CircularProgress /> : inputValue && inputValue.imdbID && <MovieDetails details={movieDetails} />}
     </Stack>
   );
 }

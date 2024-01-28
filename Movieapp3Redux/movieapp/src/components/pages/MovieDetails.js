@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Fade from "@mui/material/Fade";
+import { setMovieDetails } from "../../redux/actions";
 
-const MovieDetails = ({ details }) => {
+const MovieDetails = () => {
+  const dispatch = useDispatch();
+  const details = useSelector((state) => state.movieDetails);
   const [fadeKey, setFadeKey] = useState(0);
 
   useEffect(() => {
-    console.log(details);
     setFadeKey((prevKey) => prevKey + 1);
   }, [details]);
 
@@ -19,9 +22,7 @@ const MovieDetails = ({ details }) => {
 
   const { Actors, Country, Director, Genre, Language, Plot, Poster, Title, Runtime, Year, imdbID } = details;
 
-  return !details ? (
-    <h1>lol</h1>
-  ) : (
+  return (
     <Box mt={4} mx="auto" maxWidth="800px">
       <Fade key={fadeKey} in={true} timeout={1000}>
         <Paper elevation={3} sx={{ padding: 2, borderRadius: 12, boxShadow: 3 }}>
