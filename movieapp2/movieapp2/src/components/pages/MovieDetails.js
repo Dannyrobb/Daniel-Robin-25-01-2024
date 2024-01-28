@@ -22,25 +22,33 @@ const MovieDetails = ({}) => {
 
   useEffect(() => {
     if (!inputValue.Error) {
-      console.log(inputValue);
       dispatch(fetchMovieDetails(inputValue.imdbID));
     }
   }, [inputValue, dispatch]);
 
   useEffect(() => {
-    console.log(movieDetails);
     setFadeKey((prevKey) => prevKey + 1);
   }, [movieDetails]);
 
   if (!movieDetails) {
-    return <h1>lol</h1>;
+    return <></>;
   }
-
+  console.log(inputValue);
+  console.log(movieDetails);
   const { Actors, Country, Director, Genre, Language, Plot, Poster, Title, Runtime, Year, imdbID } = movieDetails;
 
   return (
     <>
-      <Search />
+      {inputValue.imdbID ? (
+        <Search />
+      ) : (
+        <Fade key={fadeKey} in={true} timeout={{ enter: 1000, exit: 0 }}>
+          <div style={{ position: "relative", height: "100%" }}>
+            <Search />
+          </div>
+        </Fade>
+      )}
+
       {loading ? (
         <CircularProgress />
       ) : (

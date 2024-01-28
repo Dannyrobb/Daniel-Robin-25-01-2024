@@ -97,7 +97,7 @@ const Search = () => {
     console.log(option);
     dispatch(setInputValue(option));
   };
-
+  console.log();
   return (
     <Box
       component="form"

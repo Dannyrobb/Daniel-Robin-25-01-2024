@@ -3,14 +3,14 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardMedia, Grid, IconButton, Fade } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFavorite, selectFavorites } from "../../redux/Slices/favoritesSlice";
-
+import { setInputValue } from "../../redux/Slices/inputSlice";
+import { useNavigate } from "react-router-dom";
 const Favorites = () => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-
+  const navigate = useNavigate();
   return (
     <Box p={4}>
       <Typography variant="h1" mb={4}>
@@ -24,7 +24,14 @@ const Favorites = () => {
                 <Card elevation={3} sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
                   <CardMedia component="img" height="300" image={favorite.Poster} alt={favorite.Title} />
                   <CardContent sx={{ flexGrow: 1 }}>
-                    <Typography variant="h6" gutterBottom>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      onClick={() => {
+                        dispatch(setInputValue(favorite));
+                        navigate("/");
+                      }}
+                    >
                       {favorite.Title} ({favorite.Year})
                     </Typography>
                     <Typography variant="subtitle1" paragraph>
