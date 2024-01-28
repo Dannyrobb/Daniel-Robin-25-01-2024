@@ -39,47 +39,27 @@
 
 // src/App.js
 // src/App.js
-import logo from "./logo.svg";
 import "./App.css";
-import Search from "./components/Search";
 import MovieDetails from "./components/pages/MovieDetails";
-import { useState, useEffect } from "react";
-import { Stack, CircularProgress } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMovieDetails, selectMovieDetails, selectLoading } from "./redux/Slices/movieSlice";
-import { setInputValue, selectInputValue } from "./redux/Slices/inputSlice";
 import { Routes, Route } from "react-router-dom";
 import Favorites from "./components/pages/Favorites";
+import { Stack } from "@mui/material";
 function App() {
-  const dispatch = useDispatch();
-  const movieDetails = useSelector(selectMovieDetails);
-  const loading = useSelector(selectLoading);
-  const inputValue = useSelector(selectInputValue);
-
-  // useEffect(() => {
-  //   if (typeof inputValue === "object") {
-  //     console.log(inputValue);
-  //     dispatch(fetchMovieDetails(inputValue.imdbID));
-  //   }
-  // }, [inputValue, dispatch]);
-
-  useEffect(() => {
-    if (!inputValue.Error) {
-      console.log(inputValue);
-      dispatch(fetchMovieDetails(inputValue.imdbID));
-    }
-  }, [inputValue, dispatch]);
-
   return (
-    <Stack
-      sx={{
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <Search />
-      {loading ? <CircularProgress /> : inputValue && inputValue.imdbID && <MovieDetails details={movieDetails} />}
-    </Stack>
+    <>
+      <Stack
+        sx={{
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<MovieDetails />} />
+
+          <Route path="/favorites" element={<Favorites />} />
+        </Routes>
+      </Stack>
+    </>
   );
 }
 
