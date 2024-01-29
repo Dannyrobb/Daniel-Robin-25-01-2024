@@ -8,7 +8,6 @@ const favoritesSlice = createSlice({
   reducers: {
     addFavorite: (state, action) => {
       const newFavorite = action.payload;
-      // Check if the new favorite is not already in the list
       if (!state.list.some((item) => item === newFavorite)) {
         state.list.push(newFavorite);
         localStorage.setItem("favorites", JSON.stringify(state.list));

@@ -7,7 +7,6 @@ const autocomplete = async (searchTerm) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching autocomplete:", error);
-    throw error;
   }
 };
 

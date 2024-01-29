@@ -1,4 +1,3 @@
-// api/currentMovie.js
 import axios from "axios";
 
 import { BASE_URL, API_KEY } from "../config";

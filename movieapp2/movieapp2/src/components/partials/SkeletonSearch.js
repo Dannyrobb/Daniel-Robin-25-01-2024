@@ -1,4 +1,4 @@
-import { CircularProgress, IconButton, Skeleton, Stack } from "@mui/material";
+import { Skeleton, Stack } from "@mui/material";
 
 const SkeletonSearch = () => {
   return (

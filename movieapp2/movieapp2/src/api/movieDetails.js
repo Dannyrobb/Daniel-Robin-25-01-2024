@@ -8,7 +8,6 @@ const getMovieDetails = async (id) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching movie details:", error);
-    throw error;
   }
 };
 

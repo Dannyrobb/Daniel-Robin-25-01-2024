@@ -3,7 +3,9 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { Autocomplete } from "@mui/material";
 import autocomplete from "../api/autocomplete";
-import { ToastContainer, toast } from "react-toastify";
+
+import { toastFunction } from "../helpers/toastFunction";
+import { ToastComponent } from "../helpers/ToastComponent";
 import { useDispatch } from "react-redux";
 import { setInputValue } from "../redux/Slices/inputSlice";
 const Search = () => {
@@ -16,7 +18,7 @@ const Search = () => {
       const newOptions = await autocomplete(inputVal);
       setOptions(newOptions);
     } catch (error) {
-      toast("An error occurred while searching. Please try again.");
+      toastFunction(error);
     }
   };
 
@@ -45,8 +47,7 @@ const Search = () => {
           handleOptionSelected(newValue);
         }}
       />
-
-      <ToastContainer />
+      <ToastComponent />
     </Box>
   );
 };
