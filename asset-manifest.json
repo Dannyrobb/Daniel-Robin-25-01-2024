@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Daniel-Robin-25-01-2024/static/css/main.b041a952.css",
-    "main.js": "/Daniel-Robin-25-01-2024/static/js/main.bd2a8a30.js",
+    "main.js": "/Daniel-Robin-25-01-2024/static/js/main.ce5063fa.js",
     "static/js/787.f896411e.chunk.js": "/Daniel-Robin-25-01-2024/static/js/787.f896411e.chunk.js",
     "static/media/Untitled.png": "/Daniel-Robin-25-01-2024/static/media/Untitled.46eb169ccaaa2750ffea.png",
     "index.html": "/Daniel-Robin-25-01-2024/index.html",
     "main.b041a952.css.map": "/Daniel-Robin-25-01-2024/static/css/main.b041a952.css.map",
-    "main.bd2a8a30.js.map": "/Daniel-Robin-25-01-2024/static/js/main.bd2a8a30.js.map",
+    "main.ce5063fa.js.map": "/Daniel-Robin-25-01-2024/static/js/main.ce5063fa.js.map",
     "787.f896411e.chunk.js.map": "/Daniel-Robin-25-01-2024/static/js/787.f896411e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b041a952.css",
-    "static/js/main.bd2a8a30.js"
+    "static/js/main.ce5063fa.js"
   ]
 }
