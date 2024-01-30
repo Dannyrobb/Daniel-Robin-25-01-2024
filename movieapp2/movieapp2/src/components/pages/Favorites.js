@@ -51,9 +51,9 @@ const Favorites = () => {
                     component="img"
                     width="200px"
                     height="450px"
-                    image={favorite.Poster != "N/A" ? favorite.Poster : "/movies/film.jpg"}
+                    image={favorite.Poster != "N/A" ? favorite.Poster : "/images/film.jpg"}
                     alt={favorite.Title}
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", cursor: "pointer" }}
                     onClick={() => handleRedirectOnClick(favorite)}
                   />
                   <CardContent sx={{ flexGrow: 1, backgroundColor: "transparent" }}>
