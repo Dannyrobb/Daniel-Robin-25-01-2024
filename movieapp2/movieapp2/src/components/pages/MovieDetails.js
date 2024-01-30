@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieDetails, selectMovieDetails, selectLoading } from "../../redux/Slices/movieSlice";
 import { selectInputValue } from "../../redux/Slices/inputSlice";
 import Search from "../Search";
+import ImdbRating from "../../helpers/ImdbRating";
 import { selectFavorites } from "../../redux/Slices/favoritesSlice";
 import { renderImage, renderTitleSection, RenderDefault } from "../../helpers/movieDetailsHelpers";
 
@@ -61,12 +62,23 @@ const MovieDetails = () => {
                 <Fade key={fadeKey} in={true} timeout={1000}>
                   <Paper
                     elevation={3}
-                    sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)", backgroundColor: "transparent" }}
+                    sx={{
+                      padding: 2,
+                      borderRadius: 5,
+                      // borderBottomLeftRadius: 5,
+                      // borderTopLeftRadius: 5,
+                      boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+                      // backgroundColor: "transparent",
+                      // backgroundColor: "rgba(255, 253, 230, 0.2)",
+                      backgroundColor: "rgba(0, 0, 0, 0.4)",
+                      opacity: 0.5,
+                    }}
                   >
                     <Grid container spacing={4}>
                       <Grid item xs={12} md={6}>
                         {renderImage(movieDetails)}
                       </Grid>
+
                       <Grid
                         item
                         xs={12}
@@ -76,9 +88,13 @@ const MovieDetails = () => {
                           display: "flex",
                           flexDirection: "column",
                           justifyContent: "space-evenly",
+                          alignItems: "center",
                         }}
                       >
                         {renderTitleSection(movieDetails, favoritesArray, dispatch)}
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <ImdbRating ratingValue={movieDetails.Ratings[0].Value} />
                       </Grid>
                     </Grid>
                   </Paper>

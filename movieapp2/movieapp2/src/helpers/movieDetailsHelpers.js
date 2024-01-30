@@ -27,27 +27,113 @@ export const renderTitleSection = (movieDetails, favoritesArray, dispatch) => {
   const { Title, Year, imdbID, Director, Genre, Runtime, Country, Language, Plot, Actors } = movieDetails;
 
   return (
+    // <>
+    //   <Typography color="white" variant="h4" gutterBottom>
+    //     {Title} ({Year})
+    //     <FavoriteStar movieDetails={movieDetails} />
+    //   </Typography>
+
+    //   <Typography color="white" variant="h5">
+    //     Director
+    //   </Typography>
+    //   <Typography color="white" variant="subtitle1" gutterBottom>
+    //     {Director !== "N/A" ? Director : "Not Available"}
+    //   </Typography>
+
+    //   <Typography color="white" variant="h5">
+    //     Genre
+    //   </Typography>
+    //   <Typography color="white" variant="subtitle1" gutterBottom>
+    //     {Genre !== "N/A" ? Genre : "Not Available"}
+    //   </Typography>
+
+    //   <Typography color="white" variant="h5">
+    //     Runtime
+    //   </Typography>
+    //   <Typography color="white" variant="subtitle1" gutterBottom>
+    //     {Runtime !== "N/A" ? Runtime : "Not Available"}
+    //   </Typography>
+
+    //   <Typography color="white" variant="h5" gutterBottom>
+    //     Country
+    //   </Typography>
+    //   <Typography color="white" variant="subtitle1" gutterBottom>
+    //     {Country !== "N/A" ? Country : "Not Available"}
+    //   </Typography>
+
+    //   <Typography color="white" variant="h5" gutterBottom>
+    //     Language
+    //   </Typography>
+    //   <Typography color="white" variant="subtitle1" gutterBottom>
+    //     {Language !== "N/A" ? Language : "Not Available"}
+    //   </Typography>
+
+    //   <Typography color="white" variant="h6" mt={2} mb={1}>
+    //     Plot
+    //   </Typography>
+    //   <Typography color="white" variant="body1">
+    //     {Plot !== "N/A" ? Plot : "Not Available"}
+    //   </Typography>
+    //   <Typography color="white" variant="h6" mt={2} mb={1}>
+    //     Actors
+    //   </Typography>
+    //   <Typography color="white" variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+    //     {Actors.split(", ").map((actor) => (
+    //       <span key={actor} style={{ margin: "0 8px", cursor: "pointer" }}>
+    //         <a
+    //           href={`https://www.imdb.com/find?q=${actor}`}
+    //           target="_blank"
+    //           rel="noopener noreferrer"
+    //           style={{ textDecoration: "none", color: "inherit" }}
+    //         >
+    //           {actor}
+    //         </a>
+    //       </span>
+    //     ))}
+    //   </Typography>
+    // </>
     <>
       <Typography color="white" variant="h4" gutterBottom>
         {Title} ({Year})
         <FavoriteStar movieDetails={movieDetails} />
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
-        Director: {Director !== "N/A" ? Director : "Not Available"}
+
+      <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
+        Director
       </Typography>
       <Typography color="white" variant="subtitle1" gutterBottom>
-        Genre: {Genre !== "N/A" ? Genre : "Not Available"}
+        {Director !== "N/A" ? Director : "Not Available"}
+      </Typography>
+
+      <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
+        Genre
       </Typography>
       <Typography color="white" variant="subtitle1" gutterBottom>
-        Runtime: {Runtime !== "N/A" ? Runtime : "Not Available"}
+        {Genre !== "N/A" ? Genre : "Not Available"}
+      </Typography>
+
+      <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
+        Runtime
       </Typography>
       <Typography color="white" variant="subtitle1" gutterBottom>
-        Country: {Country !== "N/A" ? Country : "Not Available"}
+        {Runtime !== "N/A" ? Runtime : "Not Available"}
+      </Typography>
+
+      <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
+        Country
       </Typography>
       <Typography color="white" variant="subtitle1" gutterBottom>
-        Language: {Language !== "N/A" ? Language : "Not Available"}
+        {Country !== "N/A" ? Country : "Not Available"}
       </Typography>
-      <Typography color="white" variant="h6" mt={2} mb={1}>
+
+      <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
+        Language
+      </Typography>
+      <Typography color="white" variant="subtitle1" gutterBottom>
+        {Language !== "N/A" ? Language : "Not Available"}
+      </Typography>
+
+      <Typography color="white" sx={{ fontFamily: "Bebas Neue, Arial" }} variant="h4" mb={1}>
         Plot
       </Typography>
       <Typography color="white" variant="body1">
