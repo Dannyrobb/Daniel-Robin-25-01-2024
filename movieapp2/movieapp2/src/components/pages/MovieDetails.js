@@ -59,7 +59,10 @@ const MovieDetails = () => {
             inputValue.imdbID && (
               <Box mt={2} mx="auto" maxWidth={{ xs: "100%", md: "800px", lg: "900px" }}>
                 <Fade key={fadeKey} in={true} timeout={1000}>
-                  <Paper elevation={3} sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)" }}>
+                  <Paper
+                    elevation={3}
+                    sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)", backgroundColor: "transparent" }}
+                  >
                     <Grid container spacing={4}>
                       <Grid item xs={12} md={movieDetails.Poster && movieDetails.Poster !== "N/A" ? 6 : 12}>
                         {renderImage(movieDetails)}

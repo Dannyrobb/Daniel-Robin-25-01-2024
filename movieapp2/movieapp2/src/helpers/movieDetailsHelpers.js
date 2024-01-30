@@ -1,14 +1,11 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+
 import FavoriteStar from "./FavoriteStar";
 import defaultMovie from "../defaultData.json";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import Fade from "@mui/material/Fade";
 import { useDispatch, useSelector } from "react-redux";
 
 export const renderImage = (movieDetails) => {
@@ -31,33 +28,35 @@ export const renderTitleSection = (movieDetails, favoritesArray, dispatch) => {
 
   return (
     <>
-      <Typography variant="h4" gutterBottom>
+      <Typography color="white" variant="h4" gutterBottom>
         {Title} ({Year})
         <FavoriteStar movieDetails={movieDetails} />
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1" gutterBottom>
         Director: {Director !== "N/A" ? Director : "Not Available"}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1" gutterBottom>
         Genre: {Genre !== "N/A" ? Genre : "Not Available"}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1" gutterBottom>
         Runtime: {Runtime !== "N/A" ? Runtime : "Not Available"}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1" gutterBottom>
         Country: {Country !== "N/A" ? Country : "Not Available"}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1" gutterBottom>
         Language: {Language !== "N/A" ? Language : "Not Available"}
       </Typography>
-      <Typography variant="h6" mt={2} mb={1}>
+      <Typography color="white" variant="h6" mt={2} mb={1}>
         Plot
       </Typography>
-      <Typography variant="body1">{Plot !== "N/A" ? Plot : "Not Available"}</Typography>
-      <Typography variant="h6" mt={2} mb={1}>
+      <Typography color="white" variant="body1">
+        {Plot !== "N/A" ? Plot : "Not Available"}
+      </Typography>
+      <Typography color="white" variant="h6" mt={2} mb={1}>
         Actors
       </Typography>
-      <Typography variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+      <Typography color="white" variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
         {Actors.split(", ").map((actor) => (
           <span key={actor} style={{ margin: "0 8px", cursor: "pointer" }}>
             <a
