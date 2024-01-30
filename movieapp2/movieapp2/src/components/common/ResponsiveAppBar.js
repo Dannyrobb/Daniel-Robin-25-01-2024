@@ -11,10 +11,10 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-
+import { useLocation } from "react-router-dom";
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+  const location = useLocation();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -24,7 +24,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "black" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LocalMoviesIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -103,13 +103,15 @@ function ResponsiveAppBar() {
           >
             MovieHub
           </Typography>
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Button key={"favoritesBtn"} onClick={handleCloseNavMenu} sx={{ my: 1, marginLeft: 2 }}>
-              <Link to={"/favorites"} style={{ color: "white", textDecoration: "none", fontSize: "1rem" }}>
-                Favorites
-              </Link>
-            </Button>
-          </Box>
+          {location.pathname !== "/favorites" && (
+            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+              <Button key={"favoritesBtn"} onClick={handleCloseNavMenu} sx={{ my: 1, marginLeft: 2 }}>
+                <Link to={"/favorites"} style={{ color: "white", textDecoration: "none", fontSize: "1rem" }}>
+                  Favorites
+                </Link>
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

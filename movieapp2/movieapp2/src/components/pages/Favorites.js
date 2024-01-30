@@ -16,7 +16,7 @@ const Favorites = () => {
   const navigate = useNavigate();
   const [expandedCard, setExpandedCard] = useState(null);
 
-  const handleDescriptionClick = (favorite) => {
+  const handleRedirectOnClick = (favorite) => {
     dispatch(setInputValue(favorite));
     navigate("/");
   };
@@ -27,10 +27,10 @@ const Favorites = () => {
 
   return (
     <Box p={4}>
-      <Typography variant="h1" color="white" mb={4} textAlign="center">
+      <Typography variant="h1" color="white" mb={4} textAlign="center" fontFamily={"Bebas Neue , ariel"}>
         Favorites
       </Typography>
-      <Grid container spacing={2} justifyContent="center">
+      <Grid container spacing={3} justifyContent="center">
         {favorites.length > 0 ? (
           favorites.map((favorite, index) => (
             <Fade key={favorite.imdbID} in={true} timeout={(index + 1) * 400}>
@@ -44,31 +44,30 @@ const Favorites = () => {
                     transition: "height 0.3s ease",
                     display: "flex",
                     flexDirection: "column",
-                    // height: "550px",
-                    // width: "250px",
-                    // backgroundColor: "transparent",
                   }}
+                  className="grow"
                 >
                   <CardMedia
                     component="img"
                     width="200px"
                     height="450px"
-                    image={favorite.Poster}
+                    image={favorite.Poster != "N/A" ? favorite.Poster : "/movies/film.jpg"}
                     alt={favorite.Title}
                     style={{ objectFit: "cover" }}
+                    onClick={() => handleRedirectOnClick(favorite)}
                   />
                   <CardContent sx={{ flexGrow: 1, backgroundColor: "transparent" }}>
                     <Typography
                       variant="h6"
                       gutterBottom
-                      onClick={() => handleDescriptionClick(favorite)}
+                      onClick={() => handleRedirectOnClick(favorite)}
                       style={{
                         cursor: "pointer",
-                        whiteSpace: "nowrap", // Prevent text from wrapping
-                        overflow: "hidden", // Hide overflow
-                        textOverflow: "ellipsis", // Show ellipsis (...) for overflow text
-                        fontSize: "1rem", // Adjust the font size as needed
-                        textAlign: "center", // Center-align the text
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        fontSize: "1rem",
+                        textAlign: "center",
                       }}
                     >
                       {favorite.Title} ({favorite.Year})
@@ -78,13 +77,13 @@ const Favorites = () => {
                         {favorite.Plot}
                       </Typography>
                     </Collapse>
-                    <Box sx={{ marginTop: "auto" }}>
+                    <Box sx={{ marginTop: "auto", display: "flex", justifyContent: "center" }}>
                       <FavoriteStar movieDetails={favorite} />
                       <IconButton
                         onClick={() => handleExpandClick(index)}
                         color="primary"
                         aria-label="Expand description"
-                        sx={{ alignSelf: "flex-end", marginTop: "-4px" }}
+                        sx={{ marginTop: "-4px" }}
                       >
                         {expandedCard === index ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                       </IconButton>

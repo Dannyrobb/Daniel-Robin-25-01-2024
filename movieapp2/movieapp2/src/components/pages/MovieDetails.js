@@ -64,13 +64,13 @@ const MovieDetails = () => {
                     sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)", backgroundColor: "transparent" }}
                   >
                     <Grid container spacing={4}>
-                      <Grid item xs={12} md={movieDetails.Poster && movieDetails.Poster !== "N/A" ? 6 : 12}>
+                      <Grid item xs={12} md={6}>
                         {renderImage(movieDetails)}
                       </Grid>
                       <Grid
                         item
                         xs={12}
-                        md={movieDetails.Poster && movieDetails.Poster !== "N/A" ? 6 : 12}
+                        md={6}
                         sx={{
                           position: "relative",
                           display: "flex",

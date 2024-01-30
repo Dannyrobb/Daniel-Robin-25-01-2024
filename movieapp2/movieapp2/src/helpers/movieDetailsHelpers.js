@@ -1,6 +1,5 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-
 import FavoriteStar from "./FavoriteStar";
 import defaultMovie from "../defaultData.json";
 import Box from "@mui/material/Box";
@@ -9,15 +8,16 @@ import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 
 export const renderImage = (movieDetails) => {
-  const { Poster, Title } = movieDetails;
+  const { Title } = movieDetails;
   return (
     <>
-      {Poster && Poster !== "N/A" ? (
-        <img src={Poster} alt={Title} style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }} />
+      {movieDetails.Poster && movieDetails.Poster !== "N/A" ? (
+        <img src={movieDetails.Poster} alt={Title} style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }} />
       ) : (
-        <Typography variant="body1" textAlign="center">
-          No Image Available
-        </Typography>
+        // <Typography variant="body1" textAlign="center">
+        //   No Image Available
+        // </Typography>
+        <img src={"/movies/film.jpg"} alt={Title} style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }} />
       )}
     </>
   );
@@ -80,7 +80,10 @@ export const RenderDefault = ({ favoritesArray }) => {
   return (
     <Box mt={2} mx="auto" maxWidth={{ xs: "100%", md: "800px", lg: "900px" }}>
       {/* <Fade key={fadeKey} in={true} timeout={1000}> */}
-      <Paper elevation={3} sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)" }}>
+      <Paper
+        elevation={3}
+        sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)", backgroundColor: "transparent" }}
+      >
         <Grid container spacing={4}>
           <Grid item xs={12} md={defaultMovie.Poster && defaultMovie.Poster !== "N/A" ? 6 : 12}>
             {renderImage(defaultMovie)}

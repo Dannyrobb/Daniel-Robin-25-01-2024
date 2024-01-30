@@ -3,4 +3,13 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+  background-attachment: fixed;
+}
+
+.grow {
+  transition: all 0.8s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.1);
 }
