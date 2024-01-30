@@ -6,10 +6,10 @@ import Fade from "@mui/material/Fade";
 import { CircularProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieDetails, selectMovieDetails, selectLoading } from "../../redux/Slices/movieSlice";
-import { setInputValue, selectInputValue } from "../../redux/Slices/inputSlice";
+import { selectInputValue } from "../../redux/Slices/inputSlice";
 import Search from "../Search";
-import { addFavorite, removeFavorite, selectFavorites } from "../../redux/Slices/favoritesSlice";
-import { renderImage, renderTitleSection } from "../../helpers/movieDetailsHelpers";
+import { selectFavorites } from "../../redux/Slices/favoritesSlice";
+import { renderImage, renderTitleSection, RenderDefault } from "../../helpers/movieDetailsHelpers";
 
 const MovieDetails = () => {
   const [fadeKey, setFadeKey] = useState(0);
@@ -38,7 +38,7 @@ const MovieDetails = () => {
               <Search />
             </div>
           </Fade>
-          <h2>Welcome...Start searching to search!</h2>
+          <RenderDefault />
         </>
       ) : (
         <>

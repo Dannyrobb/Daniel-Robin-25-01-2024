@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Card, CardContent, CardMedia, Grid, IconButton, Collapse, Fade } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, selectFavorites } from "../../redux/Slices/favoritesSlice";
+import { selectFavorites } from "../../redux/Slices/favoritesSlice";
 import { setInputValue } from "../../redux/Slices/inputSlice";
 import { useNavigate } from "react-router-dom";
 import FavoriteStar from "../../helpers/FavoriteStar";
@@ -46,7 +45,7 @@ const Favorites = () => {
                     flexDirection: "column",
                   }}
                 >
-                  <CardMedia component="img" height="300" image={favorite.Poster} alt={favorite.Title} style={{ objectFit: "cover" }} />
+                  <CardMedia component="img" width="240px" image={favorite.Poster} alt={favorite.Title} style={{ objectFit: "cover" }} />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography variant="h6" gutterBottom onClick={() => handleDescriptionClick(favorite)} style={{ cursor: "pointer" }}>
                       {favorite.Title} ({favorite.Year})

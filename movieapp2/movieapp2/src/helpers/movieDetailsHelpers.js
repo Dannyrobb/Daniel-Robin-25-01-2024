@@ -4,7 +4,13 @@ import IconButton from "@mui/material/IconButton";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import FavoriteStar from "./FavoriteStar";
-import { removeFavorite, addFavorite } from "../redux/Slices/favoritesSlice";
+import defaultMovie from "../defaultData.json";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+import Fade from "@mui/material/Fade";
+import { useDispatch, useSelector } from "react-redux";
+
 export const renderImage = (movieDetails) => {
   const { Poster, Title } = movieDetails;
   return (
@@ -66,5 +72,36 @@ export const renderTitleSection = (movieDetails, favoritesArray, dispatch) => {
         ))}
       </Typography>
     </>
+  );
+};
+
+export const RenderDefault = ({ favoritesArray }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <Box mt={2} mx="auto" maxWidth={{ xs: "100%", md: "800px", lg: "900px" }}>
+      {/* <Fade key={fadeKey} in={true} timeout={1000}> */}
+      <Paper elevation={3} sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)" }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={defaultMovie.Poster && defaultMovie.Poster !== "N/A" ? 6 : 12}>
+            {renderImage(defaultMovie)}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={defaultMovie.Poster && defaultMovie.Poster !== "N/A" ? 6 : 12}
+            sx={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+            }}
+          >
+            {renderTitleSection(defaultMovie, favoritesArray, dispatch)}
+          </Grid>
+        </Grid>
+      </Paper>
+      {/* </Fade> */}
+    </Box>
   );
 };
