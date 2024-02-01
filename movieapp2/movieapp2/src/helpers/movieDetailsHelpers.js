@@ -72,7 +72,7 @@ export const renderTitleSection = (movieDetails) => {
       <Typography color="white" variant="body1">
         {Plot !== "N/A" ? Plot : "Not Available"}
       </Typography>
-      <Typography color="white" variant="h6">
+      <Typography color="white" variant="h4">
         Actors
       </Typography>
       <Typography color="white" variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
