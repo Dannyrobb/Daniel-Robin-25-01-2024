@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Fade from "@mui/material/Fade";
-import { CircularProgress, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Box, Paper, Grid, Fade } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { fetchMovieDetails, selectMovieDetails, selectLoading } from "../../redux/Slices/movieSlice";
 import { selectInputValue } from "../../redux/Slices/inputSlice";
-import Search from "../partials/Search";
-import ImdbRating from "../partials/ImdbRating";
 import { selectFavorites } from "../../redux/Slices/favoritesSlice";
 import { renderImage, renderTitleSection, RenderDefault } from "../../helpers/movieDetailsHelpers";
+
+import Search from "../partials/Search";
+import ImdbRating from "../partials/ImdbRating";
 
 const MovieDetails = () => {
   const [fadeKey, setFadeKey] = useState(0);

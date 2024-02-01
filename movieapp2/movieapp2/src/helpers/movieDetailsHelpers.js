@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import Typography from "@mui/material/Typography";
-import FavoriteStar from "../components/partials/FavoriteStar";
-import defaultMovie from "../assets/defaultData.json";
-import { Box, Paper, Grid } from "@mui/material";
-
 import { useDispatch } from "react-redux";
+
+import Typography from "@mui/material/Typography";
+import { Box, Paper, Grid, Fade } from "@mui/material";
+
+import FavoriteStar from "../components/partials/FavoriteStar";
 import ImdbRating from "../components/partials/ImdbRating";
-import { Fade } from "@mui/material";
+
+import defaultMovie from "../assets/defaultData.json";
+
 export const renderImage = (movieDetails) => {
   const { Title } = movieDetails;
   return (
@@ -109,7 +111,7 @@ export const RenderDefault = ({ favoritesArray }) => {
             backgroundColor: "rgba(0, 0, 0, 0.4)",
           }}
         >
-          <Grid container spacing={4} justifyContent={"center"}>
+          <Grid container spacing={{ sm: 1, md: 11 }} justifyContent={"center"}>
             <Grid item xs={12} md={6}>
               {renderImage(defaultMovie)}
               <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
