@@ -3,12 +3,12 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Fade from "@mui/material/Fade";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieDetails, selectMovieDetails, selectLoading } from "../../redux/Slices/movieSlice";
 import { selectInputValue } from "../../redux/Slices/inputSlice";
-import Search from "../Search";
-import ImdbRating from "../../helpers/ImdbRating";
+import Search from "../partials/Search";
+import ImdbRating from "../partials/ImdbRating";
 import { selectFavorites } from "../../redux/Slices/favoritesSlice";
 import { renderImage, renderTitleSection, RenderDefault } from "../../helpers/movieDetailsHelpers";
 
@@ -65,18 +65,25 @@ const MovieDetails = () => {
                     sx={{
                       padding: 2,
                       borderRadius: 5,
-                      // borderBottomLeftRadius: 5,
-                      // borderTopLeftRadius: 5,
+
                       boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
-                      // backgroundColor: "transparent",
-                      // backgroundColor: "rgba(255, 253, 230, 0.2)",
+
                       backgroundColor: "rgba(0, 0, 0, 0.4)",
                       opacity: 0.5,
                     }}
                   >
-                    <Grid container spacing={4}>
+                    <Grid container spacing={{ sm: 1, md: 11 }} justifyContent={"center"}>
                       <Grid item xs={12} md={6}>
                         {renderImage(movieDetails)}
+                        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                          {movieDetails.Ratings.length > 0 ? (
+                            <ImdbRating ratingValue={movieDetails.Ratings[0].Value} />
+                          ) : (
+                            <Typography variant="h5" color={"white"}>
+                              SECRET FILM! NO RATINGS SO FAR
+                            </Typography>
+                          )}
+                        </Box>
                       </Grid>
 
                       <Grid
@@ -92,9 +99,6 @@ const MovieDetails = () => {
                         }}
                       >
                         {renderTitleSection(movieDetails, favoritesArray, dispatch)}
-                      </Grid>
-                      <Grid item xs={12} md={6}>
-                        <ImdbRating ratingValue={movieDetails.Ratings[0].Value} />
                       </Grid>
                     </Grid>
                   </Paper>

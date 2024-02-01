@@ -13,8 +13,8 @@ const ImdbRating = ({ ratingValue }) => {
   });
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      <Typography variant="h4" sx={{ color: "white", fontFamily: "Bebas Neue, Arial" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+      <Typography variant="h4" sx={{ color: "white", fontFamily: "Bebas Neue, Arial", margin: "10px" }}>
         imdb Rating
       </Typography>
       <StyledRating
@@ -23,8 +23,9 @@ const ImdbRating = ({ ratingValue }) => {
         value={parseFloat(ratingValue)} //
         max={10}
         precision={0.5}
+        sx={{ margin: "10px" }}
       />
-      <Typography variant="body1" sx={{ textAlign: "center", color: "white" }}>
+      <Typography variant="h6" sx={{ margin: "10px", textAlign: "center", color: "white" }}>
         {` ${ratingValue}`}
       </Typography>
     </Box>

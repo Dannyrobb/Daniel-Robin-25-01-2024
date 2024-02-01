@@ -25,11 +25,11 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "black" }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ display: "flex" }}>
         <Toolbar disableGutters>
           <LocalMoviesIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component={Link}
             to="/"
@@ -104,9 +104,12 @@ function ResponsiveAppBar() {
             MovieHub
           </Typography>
           {location.pathname !== "/favorites" && (
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ display: { xs: "none", md: "flex" }, alignSelf: "flex-end" }}>
               <Button key={"favoritesBtn"} onClick={handleCloseNavMenu} sx={{ my: 1, marginLeft: 2 }}>
-                <Link to={"/favorites"} style={{ color: "white", textDecoration: "none", fontSize: "1rem" }}>
+                <Link
+                  to={"/favorites"}
+                  style={{ color: "white", textDecoration: "none", fontSize: "1.2rem", fontFamily: "Bebas Neue, Arial" }}
+                >
                   Favorites
                 </Link>
               </Button>

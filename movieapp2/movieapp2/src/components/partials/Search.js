@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { Autocomplete } from "@mui/material";
-import autocomplete from "../api/autocomplete";
+import autocomplete from "../../api/autocomplete";
 
-import { toastFunction } from "../helpers/toastFunction";
-import { ToastComponent } from "../helpers/ToastComponent";
+import { toastFunction } from "../../helpers/toastFunction";
+import { ToastComponent } from "./ToastComponent";
 import { useDispatch } from "react-redux";
-import { setInputValue } from "../redux/Slices/inputSlice";
+import { setInputValue } from "../../redux/Slices/inputSlice";
 const Search = () => {
   const dispatch = useDispatch();
   const [options, setOptions] = useState([]);
@@ -36,6 +36,7 @@ const Search = () => {
       autoComplete="on"
     >
       <Autocomplete
+        sx={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
         disablePortal
         id="combo-box-demo"
         options={options.Search || []}

@@ -8,7 +8,6 @@ const getCurrentMovie = async (id) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching current movie:", error);
-    throw error;
   }
 };
 

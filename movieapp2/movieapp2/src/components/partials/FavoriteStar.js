@@ -35,9 +35,9 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavorite, removeFavorite, selectFavorites } from "../redux/Slices/favoritesSlice";
+import { addFavorite, removeFavorite, selectFavorites } from "../../redux/Slices/favoritesSlice";
 import { Tooltip } from "@mui/material";
-const FavoriteHeart = ({ movieDetails }) => {
+const FavoriteStar = ({ movieDetails }) => {
   const dispatch = useDispatch();
   const favoritesArray = useSelector(selectFavorites);
 
@@ -74,4 +74,4 @@ const FavoriteHeart = ({ movieDetails }) => {
   );
 };
 
-export default FavoriteHeart;
+export default FavoriteStar;

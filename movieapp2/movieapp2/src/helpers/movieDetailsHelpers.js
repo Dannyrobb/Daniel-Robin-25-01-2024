@@ -1,145 +1,76 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import FavoriteStar from "./FavoriteStar";
-import defaultMovie from "../defaultData.json";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import { useDispatch, useSelector } from "react-redux";
+import FavoriteStar from "../components/partials/FavoriteStar";
+import defaultMovie from "../assets/defaultData.json";
+import { Box, Paper, Grid } from "@mui/material";
 
+import { useDispatch } from "react-redux";
+import ImdbRating from "../components/partials/ImdbRating";
+import { Fade } from "@mui/material";
 export const renderImage = (movieDetails) => {
   const { Title } = movieDetails;
   return (
     <>
-      {movieDetails.Poster && movieDetails.Poster !== "N/A" ? (
-        <img src={movieDetails.Poster} alt={Title} style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }} />
-      ) : (
-        // <Typography variant="body1" textAlign="center">
-        //   No Image Available
-        // </Typography>
-        <img src={"/movies/film.jpg"} alt={Title} style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }} />
-      )}
+      <img
+        src={movieDetails.Poster && movieDetails.Poster !== "N/A" ? movieDetails.Poster : "/images/film.jpg"}
+        alt={Title}
+        style={{ width: "100%", borderRadius: 8, maxWidth: "100%" }}
+      />
     </>
   );
 };
 
-export const renderTitleSection = (movieDetails, favoritesArray, dispatch) => {
-  const { Title, Year, imdbID, Director, Genre, Runtime, Country, Language, Plot, Actors } = movieDetails;
-
+export const renderTitleSection = (movieDetails) => {
+  const { Title, Year, Director, Genre, Runtime, Country, Language, Plot, Actors } = movieDetails;
   return (
-    // <>
-    //   <Typography color="white" variant="h4" gutterBottom>
-    //     {Title} ({Year})
-    //     <FavoriteStar movieDetails={movieDetails} />
-    //   </Typography>
-
-    //   <Typography color="white" variant="h5">
-    //     Director
-    //   </Typography>
-    //   <Typography color="white" variant="subtitle1" gutterBottom>
-    //     {Director !== "N/A" ? Director : "Not Available"}
-    //   </Typography>
-
-    //   <Typography color="white" variant="h5">
-    //     Genre
-    //   </Typography>
-    //   <Typography color="white" variant="subtitle1" gutterBottom>
-    //     {Genre !== "N/A" ? Genre : "Not Available"}
-    //   </Typography>
-
-    //   <Typography color="white" variant="h5">
-    //     Runtime
-    //   </Typography>
-    //   <Typography color="white" variant="subtitle1" gutterBottom>
-    //     {Runtime !== "N/A" ? Runtime : "Not Available"}
-    //   </Typography>
-
-    //   <Typography color="white" variant="h5" gutterBottom>
-    //     Country
-    //   </Typography>
-    //   <Typography color="white" variant="subtitle1" gutterBottom>
-    //     {Country !== "N/A" ? Country : "Not Available"}
-    //   </Typography>
-
-    //   <Typography color="white" variant="h5" gutterBottom>
-    //     Language
-    //   </Typography>
-    //   <Typography color="white" variant="subtitle1" gutterBottom>
-    //     {Language !== "N/A" ? Language : "Not Available"}
-    //   </Typography>
-
-    //   <Typography color="white" variant="h6" mt={2} mb={1}>
-    //     Plot
-    //   </Typography>
-    //   <Typography color="white" variant="body1">
-    //     {Plot !== "N/A" ? Plot : "Not Available"}
-    //   </Typography>
-    //   <Typography color="white" variant="h6" mt={2} mb={1}>
-    //     Actors
-    //   </Typography>
-    //   <Typography color="white" variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
-    //     {Actors.split(", ").map((actor) => (
-    //       <span key={actor} style={{ margin: "0 8px", cursor: "pointer" }}>
-    //         <a
-    //           href={`https://www.imdb.com/find?q=${actor}`}
-    //           target="_blank"
-    //           rel="noopener noreferrer"
-    //           style={{ textDecoration: "none", color: "inherit" }}
-    //         >
-    //           {actor}
-    //         </a>
-    //       </span>
-    //     ))}
-    //   </Typography>
-    // </>
     <>
-      <Typography color="white" variant="h4" gutterBottom>
+      <Typography color="white" variant="h3" sx={{ fontFamily: "Bebas Neue, Arial" }}>
         {Title} ({Year})
         <FavoriteStar movieDetails={movieDetails} />
       </Typography>
 
       <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
-        Director
+        {Director.split(",").length > 1 ? "Directors" : "Director"}
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1">
         {Director !== "N/A" ? Director : "Not Available"}
       </Typography>
 
       <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
         Genre
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1">
         {Genre !== "N/A" ? Genre : "Not Available"}
       </Typography>
 
       <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
         Runtime
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1">
         {Runtime !== "N/A" ? Runtime : "Not Available"}
       </Typography>
 
       <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
         Country
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1">
         {Country !== "N/A" ? Country : "Not Available"}
       </Typography>
 
       <Typography color="white" variant="h4" sx={{ fontFamily: "Bebas Neue, Arial" }}>
         Language
       </Typography>
-      <Typography color="white" variant="subtitle1" gutterBottom>
+      <Typography color="white" variant="subtitle1">
         {Language !== "N/A" ? Language : "Not Available"}
       </Typography>
 
-      <Typography color="white" sx={{ fontFamily: "Bebas Neue, Arial" }} variant="h4" mb={1}>
+      <Typography color="white" sx={{ fontFamily: "Bebas Neue, Arial" }} variant="h4">
         Plot
       </Typography>
       <Typography color="white" variant="body1">
         {Plot !== "N/A" ? Plot : "Not Available"}
       </Typography>
-      <Typography color="white" variant="h6" mt={2} mb={1}>
+      <Typography color="white" variant="h6">
         Actors
       </Typography>
       <Typography color="white" variant="body1" sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
@@ -162,34 +93,47 @@ export const renderTitleSection = (movieDetails, favoritesArray, dispatch) => {
 
 export const RenderDefault = ({ favoritesArray }) => {
   const dispatch = useDispatch();
-
+  const [fadeKey, setFadeKey] = useState(0);
+  useEffect(() => {
+    setFadeKey((prevKey) => prevKey + 1);
+  }, [defaultMovie]);
   return (
     <Box mt={2} mx="auto" maxWidth={{ xs: "100%", md: "800px", lg: "900px" }}>
-      {/* <Fade key={fadeKey} in={true} timeout={1000}> */}
-      <Paper
-        elevation={3}
-        sx={{ padding: 2, borderRadius: 12, boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)", backgroundColor: "transparent" }}
-      >
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={defaultMovie.Poster && defaultMovie.Poster !== "N/A" ? 6 : 12}>
-            {renderImage(defaultMovie)}
+      <Fade key={fadeKey} in={true} timeout={1000}>
+        <Paper
+          elevation={3}
+          sx={{
+            padding: 2,
+            borderRadius: 5,
+            boxShadow: "0px 0px 20px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "rgba(0, 0, 0, 0.4)",
+          }}
+        >
+          <Grid container spacing={4} justifyContent={"center"}>
+            <Grid item xs={12} md={6}>
+              {renderImage(defaultMovie)}
+              <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <ImdbRating ratingValue={defaultMovie.Ratings[0].Value} />
+              </Box>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
+                alignItems: "center",
+              }}
+            >
+              {renderTitleSection(defaultMovie, favoritesArray, dispatch)}
+            </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={defaultMovie.Poster && defaultMovie.Poster !== "N/A" ? 6 : 12}
-            sx={{
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-evenly",
-            }}
-          >
-            {renderTitleSection(defaultMovie, favoritesArray, dispatch)}
-          </Grid>
-        </Grid>
-      </Paper>
-      {/* </Fade> */}
+        </Paper>
+      </Fade>
     </Box>
   );
 };
