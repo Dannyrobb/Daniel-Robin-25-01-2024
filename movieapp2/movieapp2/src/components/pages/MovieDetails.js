@@ -53,7 +53,7 @@ const MovieDetails = () => {
           )}
 
           {loading ? (
-            <CircularProgress />
+            <CircularProgress color="secondary" sx={{ margin: "30px" }} />
           ) : (
             inputValue &&
             inputValue.imdbID && (
